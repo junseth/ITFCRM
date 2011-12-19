@@ -8,21 +8,27 @@ RailsAdmin.config do |config|
   # I18n.default_locale = :de
 
   config.current_user_method { current_user } # auto-generated
-  config.authorize_with :cancan
+  config.authorize_with :cancan, Ability
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Insure The Future CRM', 'Admin']
 
   config.model Goal do
     field :title
     field :score
+    field :user_goals
   end
 
   config.model User do
     field :email
     field :agent
     field :role, :enum
+    field :user_goals
   end
-  
+
+  config.model UserGoal do
+    visible false
+  end
+    
   config.model Conversation do
     field :notes
     field :goals

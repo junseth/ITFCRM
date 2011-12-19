@@ -8,11 +8,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :agent, :agent_id, :role
-  
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :agent, :agent_id, :role  
+
+
   has_many :conversations
-  
   belongs_to :agent
+
+  has_many :user_goals, :dependent => :destroy, :inverse_of => :user
+  accepts_nested_attributes_for :user_goals, :allow_destroy => true
+  attr_accessible :user_goals_attributes
+
   
   def role_enum
     ['user','admin','superadmin']

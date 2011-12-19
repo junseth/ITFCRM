@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Agent.delete_all
+agent1 = Agent.create(:title => 'Tammy Satterfield')
+agent1.save
